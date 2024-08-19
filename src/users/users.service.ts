@@ -8,8 +8,16 @@ export class UsersService {
   constructor(@InjectRepository(User) private repo: Repository<User>) { }
 
   findOne(id: number) {
+    if (!id) {
+      return null;
+    }
     return this.repo.findOneBy({ id });
   }
+
+  find(email: string) {
+    return this.repo.find({ where: { email } });
+  }
+
   async create(email: string, password: string) {
     const checkEmail = await this.repo.findOne({ where: { email } })
     if (checkEmail) {
