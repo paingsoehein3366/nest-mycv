@@ -1,12 +1,12 @@
 import { Exclude } from 'class-transformer';
-import { Entity, Column, PrimaryGeneratedColumn, AfterInsert, AfterUpdate, AfterRemove } from 'typeorm';
+import { Entity, Column, PrimaryColumn, AfterInsert, AfterUpdate, AfterRemove } from 'typeorm';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn({ name: 'user_id ', type: 'int' })
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
